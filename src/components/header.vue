@@ -11,9 +11,9 @@
 			</mu-icon-menu>
 		</mu-appbar>
 		<mu-dialog :open="dialog" @close="close">
-			<img src="https://user-images.githubusercontent.com/9276376/30367105-de95534e-989f-11e7-8c43-039222352121.png" />
+			<img :src="img_url" />
 			<p>
-				Vue中文社区 独家公众号
+				{{text_explain}}
 			</p>
 			<mu-flat-button slot="actions" primary @click="close" label="确定" />
 		</mu-dialog>
@@ -25,18 +25,28 @@
 		data() {
 			return {
 				value: null,
-				dialog: false
+				dialog: false,
+				text_explain: '',
+				img_url: ''
 			}
 		},
 		methods: {
 			handleChange(val) {
 				this.value = val
-				switch(val) {
-					case '1':
-						this.dialog = true
-						break;
-					case '2':
-
+				if(this.value == '1') {
+					this.dialog = true;
+					this.text_explain = "欢迎关注vue中文社区";
+					this.img_url = "https://user-images.githubusercontent.com/9276376/30367105-de95534e-989f-11e7-8c43-039222352121.png"
+				}
+				if(this.value == '2') {
+					this.dialog = true;
+					this.text_explain = "公用api地址：https://www.vue-js.com/api/";
+					this.img_url = "https://user-images.githubusercontent.com/9276376/30367105-de95534e-989f-11e7-8c43-039222352121.png"
+				}
+				if(this.value == '3'){
+					this.dialog = true;
+					this.text_explain = "是基于对vue所开发的。不足之处还请";
+					this.img_url = "http://musicugc.cdn.qianqian.com/ugcdiy/pic/f1405bbdedcc0914ee99cb139c0324be.jpg@o_1%7Cs_2,w_192,h_192%7Cc_1,w_192,h_192"
 				}
 			},
 			close(position) {
